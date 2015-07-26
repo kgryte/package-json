@@ -3,6 +3,7 @@
 
 var mpath = './../lib/async.js';
 
+
 // MODULES //
 
 var // Expectation library:
@@ -95,6 +96,30 @@ describe( 'async', function tests() {
 		}
 	});
 
+	it( 'should throw an error if provided an invalid option', function test() {
+		var values = [
+			5,
+			null,
+			true,
+			undefined,
+			NaN,
+			[],
+			{},
+			function(){}
+		];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( TypeError );
+		}
+		function badValue( value ) {
+			return function() {
+				cp( './beep/boop', {
+					'name': value
+				});
+			};
+		}
+	});
+
 	it( 'should throw an error if provided a callback argument which is not a function', function test() {
 		var values = [
 			'beep',
@@ -117,76 +142,6 @@ describe( 'async', function tests() {
 		}
 	});
 
-	it( 'should throw an error if provided a template option which is not a string primitive', function test() {
-		var values = [
-			5,
-			null,
-			true,
-			undefined,
-			NaN,
-			[],
-			{},
-			function(){}
-		];
-
-		for ( var i = 0; i < values.length; i++ ) {
-			expect( badValue( values[i] ) ).to.throw( TypeError );
-		}
-		function badValue( value ) {
-			return function() {
-				cp( './beep/boop', {
-					'template': value
-				});
-			};
-		}
-	});
-
-	it( 'should throw an error if provided an unrecognized template option', function test() {
-		var values = [
-			'beep',
-			'boop',
-			'woot'
-		];
-
-		for ( var i = 0; i < values.length; i++ ) {
-			expect( badValue( values[i] ) ).to.throw( Error );
-		}
-		function badValue( value ) {
-			return function() {
-				cp( './beep/boop', {
-					'template': value
-				});
-			};
-		}
-	});
-
-	it( 'should throw an error if provided a keywords option which is not a string array', function test() {
-		var values = [
-			'beep',
-			5,
-			null,
-			true,
-			undefined,
-			NaN,
-			[],
-			['beep',null],
-			['beep',5],
-			{},
-			function(){}
-		];
-
-		for ( var i = 0; i < values.length; i++ ) {
-			expect( badValue( values[i] ) ).to.throw( TypeError );
-		}
-		function badValue( value ) {
-			return function() {
-				cp( './beep/boop', {
-					'keywords': value
-				});
-			};
-		}
-	});
-
 	it( 'should create a package.json file in a specified directory', function test() {
 		var dirpath;
 
@@ -203,6 +158,92 @@ describe( 'async', function tests() {
 			var bool = fs.existsSync( path.join( dirpath, 'package.json' ) );
 
 			assert.isTrue( bool );
+		}
+	});
+
+	it( 'should create a configured package.json file in a specified directory', function test() {
+		var dirpath;
+
+		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
+
+		mkdirp.sync( dirpath );
+		cp( dirpath, {
+			'template': 'default',
+			'name': 'my-really-cool-module-which-no-one-has-ever-done-before-beep-boop',
+			'desc': 'Beep boop.',
+			'author': 'Jane Doe',
+			'email': 'jane@doe.com',
+			'repo': 'jane/beep',
+			'cmd': 'beepboop',
+			'license': 'MIT',
+			'keywords': ['beep','boop','bop']
+		}, onFinish );
+
+		function onFinish( error ) {
+			var fpath1,
+				fpath2,
+				f1, f2;
+			if ( error ) {
+				assert.ok( false );
+				return;
+			}
+			fpath1 = path.join( dirpath, 'package.json' );
+			fpath2 = path.join( __dirname, 'fixtures', 'package.json' );
+
+			f1 = require( fpath1 );
+			f2 = require( fpath2 );
+
+			assert.deepEqual( f1, f2 );
+		}
+	});
+
+	it( 'should pass any errors encountered while checking package name availability to a provided callback', function test() {
+		var dirpath,
+			cp;
+
+		cp = proxyquire( mpath, {
+			'./package_name.js': function isAvailable( name , clbk ) {
+				clbk( new Error() );
+			}
+		});
+
+		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
+
+		cp( dirpath, {
+			'name': 'beep'
+		}, onFinish );
+
+		function onFinish( error ) {
+			if ( error ) {
+				assert.ok( true );
+				return;
+			}
+			assert.ok( false );
+		}
+	});
+
+	it( 'should pass an error to a provided callback if a package name is not available on NPM', function test() {
+		var dirpath,
+			cp;
+
+		cp = proxyquire( mpath, {
+			'./package_name.js': function isAvailable( name , clbk ) {
+				clbk( null, false );
+			}
+		});
+
+		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
+
+		cp( dirpath, {
+			'name': 'request'
+		}, onFinish );
+
+		function onFinish( error ) {
+			if ( error ) {
+				assert.ok( true );
+				return;
+			}
+			assert.ok( false );
 		}
 	});
 

@@ -55,7 +55,7 @@ describe( 'sync', function tests() {
 		}
 	});
 
-	it( 'should throw an error if not provided a valid options argument', function test() {
+	it( 'should throw an error if provided an invalid options argument', function test() {
 		var values = [
 			'beep',
 			5,
@@ -72,77 +72,7 @@ describe( 'sync', function tests() {
 		}
 		function badValue( value ) {
 			return function() {
-				cp( './beep/boop', value );
-			};
-		}
-	});
-
-	it( 'should throw an error if provided a template option which is not a string primitive', function test() {
-		var values = [
-			5,
-			null,
-			true,
-			undefined,
-			NaN,
-			[],
-			{},
-			function(){}
-		];
-
-		for ( var i = 0; i < values.length; i++ ) {
-			expect( badValue( values[i] ) ).to.throw( TypeError );
-		}
-		function badValue( value ) {
-			return function() {
-				cp( './beep/boop', {
-					'template': value
-				});
-			};
-		}
-	});
-
-	it( 'should throw an error if provided a keywords option which is not a string array', function test() {
-		var values = [
-			'beep',
-			5,
-			null,
-			true,
-			undefined,
-			NaN,
-			[],
-			['beep',null],
-			['beep',5],
-			{},
-			function(){}
-		];
-
-		for ( var i = 0; i < values.length; i++ ) {
-			expect( badValue( values[i] ) ).to.throw( TypeError );
-		}
-		function badValue( value ) {
-			return function() {
-				cp( './beep/boop', {
-					'keywords': value
-				});
-			};
-		}
-	});
-
-	it( 'should throw an error if provided an unrecognized template option', function test() {
-		var values = [
-			'beep',
-			'boop',
-			'woot'
-		];
-
-		for ( var i = 0; i < values.length; i++ ) {
-			expect( badValue( values[i] ) ).to.throw( Error );
-		}
-		function badValue( value ) {
-			return function() {
-				cp( './beep/boop', {
-					'template': value
-				});
+				cp( 'beep/boop', value );
 			};
 		}
 	});
@@ -159,6 +89,36 @@ describe( 'sync', function tests() {
 		bool = fs.existsSync( path.join( dirpath, 'package.json' ) );
 
 		assert.isTrue( bool );
+	});
+
+	it( 'should create a configured package.json file in a specified directory', function test() {
+		var dirpath,
+			fpath1,
+			fpath2,
+			f1, f2;
+
+		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
+
+		mkdirp.sync( dirpath );
+		cp( dirpath, {
+			'template': 'default',
+			'name': 'my-really-cool-module-which-no-one-has-ever-done-before-beep-boop',
+			'desc': 'Beep boop.',
+			'author': 'Jane Doe',
+			'email': 'jane@doe.com',
+			'repo': 'jane/beep',
+			'cmd': 'beepboop',
+			'license': 'MIT',
+			'keywords': ['beep','boop','bop']
+		});
+
+		fpath1 = path.join( dirpath, 'package.json' );
+		fpath2 = path.join( __dirname, 'fixtures', 'package.json' );
+
+		f1 = require( fpath1 );
+		f2 = require( fpath2 );
+
+		assert.deepEqual( f1, f2 );
 	});
 
 	it( 'should create a package.json file using a specified template', function test() {

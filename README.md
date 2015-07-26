@@ -85,6 +85,8 @@ The function accepts the same `options` as the asynchronous version.
 	kgryte/package-json
 	```
 
+*	In asynchronous mode, the module checks for package name [availability](https://github.com/sindresorhus/npm-name) on NPM. If an internet connection is __not__ available, the module assumes that the package name __is__ available in order to allow offline use.
+
 
 ## Examples
 

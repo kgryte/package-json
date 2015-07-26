@@ -1,0 +1,46 @@
+{
+  "name": "my-really-cool-module-which-no-one-has-ever-done-before-beep-boop",
+  "version": "0.0.0",
+  "description": "Beep boop.",
+  "author": {
+    "name": "Jane Doe",
+    "email": "jane@doe.com"
+  },
+  "contributors": [
+    {
+      "name": "Jane Doe",
+      "email": "jane@doe.com"
+    }
+  ],
+  "bin": {
+    "beepboop": "./bin/cli"
+  },
+  "scripts": {
+    "test": "mocha",
+    "test-cov": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coverage -- -R spec",
+    "coveralls": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coveralls/coverage --report lcovonly -- -R spec && cat ./reports/coveralls/coverage/lcov.info | coveralls && rm -rf ./reports/coveralls"
+  },
+  "main": "./lib",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jane/beep.git"
+  },
+  "keywords": [
+    "beep",
+    "boop",
+    "bop"
+  ],
+  "bugs": {
+    "url": "https://github.com/jane/beep/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "3.x.x",
+    "coveralls": "^2.11.1",
+    "istanbul": "^0.3.0",
+    "jshint": "2.x.x",
+    "jshint-stylish": "2.x.x",
+    "mocha": "2.x.x"
+  },
+  "license": "MIT"
+}
