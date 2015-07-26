@@ -1,0 +1,44 @@
+{
+  "name": "{{name}}",
+  "version": "0.0.0",
+  "description": "{{desc}}",
+  "author": {
+    "name": "{{author}}",
+    "email": "{{{email}}}"
+  },
+  "contributors": [
+    {
+      "name": "{{author}}",
+      "email": "{{{email}}}"
+    }
+  ],
+  {{#cmd}}
+  "bin": {
+    "{{cmd}}": "./bin/cli"
+  },
+  {{/cmd}}
+  "scripts": {
+    "test": "mocha",
+    "test-cov": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coverage -- -R spec",
+    "coveralls": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coveralls/coverage --report lcovonly -- -R spec && cat ./reports/coveralls/coverage/lcov.info | coveralls && rm -rf ./reports/coveralls"
+  },
+  "main": "./lib",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/{{{repo}}}.git"
+  },
+  "keywords": [{{{keywords}}}],
+  "bugs": {
+    "url": "https://github.com/{{{repo}}}/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "3.x.x",
+    "coveralls": "^2.11.1",
+    "istanbul": "^0.3.0",
+    "jshint": "2.x.x",
+    "jshint-stylish": "2.x.x",
+    "mocha": "2.x.x"
+  },
+  "license": "{{license}}"
+}
