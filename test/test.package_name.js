@@ -6,13 +6,8 @@ var mpath = './../lib/package_name.js';
 
 // MODULES //
 
-var // Expectation library:
-	chai = require( 'chai' ),
-
-	// Module to proxy required modules:
+var chai = require( 'chai' ),
 	proxyquire = require( 'proxyquire' ),
-
-	// Module to be tested:
 	isAvailable = require( mpath );
 
 
