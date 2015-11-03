@@ -12,7 +12,8 @@
 	],
 	"boolean": [
 		"help",
-		"version"
+		"version",
+		"private"
 	],
 	"alias": {
 		"help": [

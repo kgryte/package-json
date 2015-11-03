@@ -167,7 +167,8 @@ describe( 'async', function tests() {
 			'repo': 'jane/beep',
 			'cmd': 'beepboop',
 			'license': 'MIT',
-			'keywords': ['beep','boop','bop']
+			'keywords': ['beep','boop','bop'],
+			'private': true
 		}, onFinish );
 
 		function onFinish( error ) {

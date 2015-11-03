@@ -98,6 +98,9 @@ if ( args.hasOwnProperty( 'keywords' ) ) {
 if ( args.hasOwnProperty( 'license' ) ) {
 	opts.license = args.license;
 }
+if ( args.private ) {
+	opts.private = true;
+}
 
 if ( args._.length ) {
 	dest = args._[ 0 ];

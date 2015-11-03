@@ -43,6 +43,7 @@ The function accepts the following `options`:
 *	__cmd__: package [command](https://docs.npmjs.com/files/package.json#bin), if the package should be used as a CLI tool.
 *	__keywords__: package [keywords](https://docs.npmjs.com/files/package.json#keywords). Default: `[]`.
 *	__license__: package [license](https://docs.npmjs.com/files/package.json#license). Default: `'MIT'`.
+*	__private__: `boolean` indicating whether a package is __private__. Default: `false`.
 
 By default, a `default` template is used. To specify a different `package.json` template, set the `template` option.
 
@@ -141,17 +142,18 @@ Usage: packagejson [options] [destination]
 
 Options:
 
-  -h,    --help                Print this message.
-  -V,    --version             Print the package version.
-  -tmpl  --template [name]     Template name. Default: 'default'.
-         --name [name]         Package name. Default: ''.
-  -desc  --description [desc]  Package description. Default: ''.
-         --author [author]     Package author.
-         --email [email]       Package author email.
-         --repo [repo]         Package Github repository. Default: ''.
-         --cmd [name]          Package command, if package is a CLI tool.
-         --keywords [keywords] Package keywords; e.g., word1,word2,...,wordN.
-         --license [name]      Package license. Default: 'MIT'.
+  -h,    --help               Print this message.
+  -V,    --version            Print the package version.
+  -tmpl  --template name      Template name. Default: 'default'.
+         --name name          Package name. Default: ''.
+  -desc  --description desc   Package description. Default: ''.
+         --author author      Package author.
+         --email email        Package author email.
+         --repo repo          Package Github repository. Default: ''.
+         --cmd name           Package command, if package is a CLI tool.
+         --keywords keywords  Package keywords; e.g., word1,word2,...,wordN.
+         --license name       Package license. Default: 'MIT'.
+         --private            Specifies whether a package is private.
 ```
 
 

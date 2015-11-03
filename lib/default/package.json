@@ -1,5 +1,5 @@
 {
-  "name": "{{name}}",
+  "name": "{{{name}}}",
   "version": "0.0.0",
   "description": "{{{desc}}}",
   "author": {
@@ -40,5 +40,8 @@
     "jshint-stylish": "2.x.x",
     "mocha": "2.x.x"
   },
-  "license": "{{license}}"
+  "license": "{{license}}"{{#private}},{{/private}}
+  {{#private}}
+  "private": true
+  {{/private}}
 }

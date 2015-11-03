@@ -42,5 +42,6 @@
     "jshint-stylish": "2.x.x",
     "mocha": "2.x.x"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "private": true
 }

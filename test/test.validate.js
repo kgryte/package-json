@@ -307,6 +307,28 @@ describe( 'validate', function tests() {
 		}
 	});
 
+	it( 'should return an error if provided a private option which is not a boolean primitive', function test() {
+		var values, err;
+
+		values = [
+			'5',
+			5,
+			null,
+			undefined,
+			NaN,
+			[],
+			{},
+			function(){}
+		];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			err = validate( {}, {
+				'private': values[ i ]
+			});
+			assert.isTrue( err instanceof TypeError );
+		}
+	});
+
 	it( 'should return null if all options are valid', function test() {
 		var err;
 
@@ -319,7 +341,8 @@ describe( 'validate', function tests() {
 			'repo': 'jane/beep',
 			'cmd': 'beepboop',
 			'keywords': ['beep','boop','bop'],
-			'license': 'MIT'
+			'license': 'MIT',
+			'private': false
 		});
 
 		assert.isNull( err );

@@ -100,7 +100,8 @@ describe( 'sync', function tests() {
 			'repo': 'jane/beep',
 			'cmd': 'beepboop',
 			'license': 'MIT',
-			'keywords': ['beep','boop','bop']
+			'keywords': ['beep','boop','bop'],
+			'private': true
 		});
 
 		fpath1 = path.join( dirpath, 'package.json' );
