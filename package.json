@@ -1,6 +1,6 @@
 {
   "name": "@kgryte/package-json",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Creates a package.json file.",
   "author": {
     "name": "Athan Reines",
