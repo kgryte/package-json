@@ -1,6 +1,6 @@
 package.json
 =========
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][build-image]][build-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][dependencies-image]][dependencies-url]
 
 > Creates a `package.json` file.
 
@@ -216,11 +216,11 @@ Copyright &copy; 2015. Athan Reines.
 [npm-image]: http://img.shields.io/npm/v/@kgryte/package-json.svg
 [npm-url]: https://npmjs.org/package/@kgryte/package-json
 
-[travis-image]: http://img.shields.io/travis/kgryte/package-json/master.svg
-[travis-url]: https://travis-ci.org/kgryte/package-json
+[build-image]: http://img.shields.io/travis/kgryte/package-json/master.svg
+[build-url]: https://travis-ci.org/kgryte/package-json
 
-[codecov-image]: https://img.shields.io/codecov/c/github/kgryte/package-json/master.svg
-[codecov-url]: https://codecov.io/github/kgryte/package-json?branch=master
+[coverage-image]: https://img.shields.io/codecov/c/github/kgryte/package-json/master.svg
+[coverage-url]: https://codecov.io/github/kgryte/package-json?branch=master
 
 [dependencies-image]: http://img.shields.io/david/kgryte/package-json.svg
 [dependencies-url]: https://david-dm.org/kgryte/package-json
