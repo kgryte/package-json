@@ -18,9 +18,9 @@
   },
   {{/cmd}}
   "scripts": {
-    "test": "tape ./test/*.js",
-    "test-cov": "istanbul cover --dir ./reports/coverage --report lcov tape ./test/*.js",
-    "coverage": "istanbul cover --dir ./reports/codecov/coverage --report lcovonly tape ./test/*.js && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov"
+    "test": "tape \"./test/*.js\"",
+    "test-cov": "istanbul cover --dir ./reports/coverage --report lcov tape -- \"./test/*.js\"",
+    "coverage": "istanbul cover --dir ./reports/codecov/coverage --report lcovonly tape -- \"./test/*.js\" && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov"
   },
   "main": "./lib",
   "repository": {
