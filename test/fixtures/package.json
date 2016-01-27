@@ -35,7 +35,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "chai": "3.x.x",
     "codecov": "1.x.x",
     "istanbul": "^0.4.1",
     "jshint": "2.x.x",
