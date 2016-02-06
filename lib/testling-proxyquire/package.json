@@ -41,9 +41,9 @@
 		"istanbul": "^0.4.1",
 		"jshint": "2.x.x",
 		"jshint-stylish": "2.x.x",
-		"proxyquire": "^1.7.3",
+		"proxyquire": "^1.7.4",
 		"proxyquire-universal": "^1.0.8",
-		"proxyquireify": "^3.0.1",
+		"proxyquireify": "^3.1.1",
 		"tap-spec": "4.x.x",
 		"tape": "4.x.x",
 		"testling": "1.x.x"
