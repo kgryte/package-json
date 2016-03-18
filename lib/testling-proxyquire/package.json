@@ -66,8 +66,8 @@
 			"android-browser/4.2..latest"
 		]
 	},
-  "license": "{{license}}"{{#private}},{{/private}}
-  {{#private}}
-  "private": true
-  {{/private}}
+	"license": "{{license}}"{{#private}},{{/private}}
+	{{#private}}
+	"private": true
+	{{/private}}
 }
